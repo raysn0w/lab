@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+cd "$(dirname "$0")"
+
+echo "Starting traefik..."
+docker compose --env-file .env -f traefik/compose.yml up -d
+
+echo "Starting registry..."
+docker compose --env-file .env -f registry/compose.yml up -d
+
+echo "Starting portainer..."
+docker compose --env-file .env -f portainer/compose.yml up -d
+
+echo "Starting watchtower..."
+docker compose --env-file .env -f watchtower/compose.yml up -d
+
+echo "Starting dozzle..."
+docker compose --env-file .env -f dozzle/compose.yml up -d
+
+echo "All services started."
+

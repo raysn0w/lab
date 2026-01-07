@@ -1,0 +1,25 @@
+
+services:
+  watchtower:
+    image: nickfedor/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    environment:
+      # Check every 10 minutes
+      WATCHTOWER_POLL_INTERVAL: 600
+      # Remove old images after updating
+      WATCHTOWER_CLEANUP: true
+      # Only monitor containers with the enable label
+      WATCHTOWER_LABEL_ENABLE: true
+
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+

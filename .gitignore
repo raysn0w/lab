@@ -1,0 +1,24 @@
+# Data directories
+portainer/data/
+registry/data/
+
+# Secrets & certificates
+traefik/acme.json
+*.env
+.env
+
+# Logs
+traefik/logs/
+*.log
+
+# Auth files
+registry/auth/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+

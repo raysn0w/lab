@@ -1,0 +1,21 @@
+
+services:
+  registry:
+    image: registry:2
+    container_name: docker-registry
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.registry.rule=Host(`hub.${DOMAIN}`)"
+      - "traefik.http.routers.registry.entrypoints=websecure"
+      - "traefik.http.routers.registry.tls.certresolver=letsencrypt"
+      - "traefik.http.services.registry.loadbalancer.server.port=5000"
+    volumes:
+      - ./data:/var/lib/registry
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external: true
