@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+touch traefik/acme.json && chmod 600 traefik/acme.json
+
 cd "$(dirname "$0")"
 
 echo "Starting traefik..."
