@@ -51,7 +51,7 @@ This project provides a ready-to-use infrastructure-as-code setup for a home lab
 Once everything is up and running, you can access the services at the following subdomains:
 
 - **Traefik Dashboard**: `https://control.<your-domain>`
-- **Portainer**: `https://portainer.<your-domain>`
+- **Portainer**: `https://port.<your-domain>`
 - **Dozzle (Logs)**: `https://logs.<your-domain>`
 - **Docker Registry**: `https://hub.<your-domain>`
 
