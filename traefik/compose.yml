@@ -1,7 +1,7 @@
 
 services:
   traefik:
-    image: traefik:v3.6.6
+    image: traefik:v3.7
     container_name: traefik
     restart: unless-stopped
 
@@ -12,6 +12,10 @@ services:
       # Providers
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      # Containers here sit on both `proxy` and `backend`. Without this,
+      # Traefik may pick the backend IP it has no route to and every request
+      # hangs until it 504s. Pin routing to the network Traefik is on.
+      - "--providers.docker.network=proxy"
 
       # EntryPoints
       - "--entrypoints.websecure.address=:443"
